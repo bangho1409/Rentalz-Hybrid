@@ -1,0 +1,467 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <title>RentalZ</title>
+</head>
+
+<body>
+    <!-- PAGE "HOME" -->
+    <div data-role="page" id="page-home">
+        <div data-role="header" data-position="fixed">Home</div>
+        <div data-role="main" class="ui-content">
+            <img src="img/rentalz.png" class="center" ><br><br>
+            <form id="frm-register-account">
+                <span id="error" style="color: red;"></span>
+                <input type="text" placeholder="Username" id="username" required>
+                <input type="password" placeholder="Password" id="password" required>
+                <input type="password" placeholder="Confirm Password" id="password-confirm" required>
+                <button type="submit">Create Account</button>
+
+            </form>
+            <!-- Confirm Registration -->
+            <form data-role="popup" id="frm-confirm" class="ui-content">
+                <div class="ui-field-contain">
+                    <label for="id">Username</label>
+                    <input type="text" id="username" readonly>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="id">Password</label>
+                    <input type="text" id="password" readonly>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a class="ui-btn ui-corner-all" data-rel="back">Cancel</a>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="submit" value="Confirm">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#page-home" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon ui-state-persist active">Home</a>
+                    </li>
+                    <li>
+                        <a href="#page-create-rental" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon">Create Rental</a>
+                    </li>
+                    <li>
+                        <a href="#page-rental" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon">Rental List</a>
+                    </li>
+                    <li>
+                        <a href="#page-list-account" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon">Account</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PAGE "CREATE NEW RENTAL" -->
+    <div data-role="page" id="page-create-rental">
+        <div data-role="header" data-position="fixed">Create Your Rental</div>
+        <div data-role="main" class="ui-content">
+            <!-- Create Rental Form -->
+            <form id="frm-createrental">
+                <span id="error" style="color: red;"></span>
+                <input type="text" placeholder="Rental's Name" id="rentalname" required>
+                <input type="text" placeholder="Monthly Price" id="price" required>
+                <input type="text" placeholder="Address" id="address" required>
+                <select id="city"> </select>
+                <select id="district"> </select>
+                <select id="ward"> </select>
+                <label for="type">Choose property's type:</label>
+                <select name="type" id="type">
+                    <option value="1">Semi-Detached House</option>
+                    <option value="2">Detached House</option>
+                    <option value="3">Townhouse</option>
+                    <option value="4">Bungalow</option>
+                </select>
+                <label for="type">Choose furniture type:</label>
+                <select name="furniture" id="furniture">
+                    <option value="1">Furnished</option>
+                    <option value="2">Unfurnished</option>
+                    <option value="3">Part Furnished</option>
+                </select>
+
+                <label for="bedroom">Choose number of bedroom:</label>
+                <select name="bedroom" id="bedroom">
+                    <option value="1">Studio</option>
+                    <option value="2">One</option>
+                    <option value="3">Two</option>
+                    <option value="4">Three</option>
+                </select>
+                <input type="text" placeholder="Reporter" id="reporter" required>
+                <button type="submit">Create Rental</button>
+            </form>
+
+            <!-- Create Rental Confirm Form -->
+            <form data-role="popup" id="frm-confirm-rental" class="ui-content">
+                <div class="ui-field-contain">
+                    <label for="id">Rental's Name</label>
+                    <input type="text" id="rentalname" readonly>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="id">Price</label>
+                    <input type="text" id="price" readonly>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="id">Address</label>
+                    <input type="text" id="address" readonly>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="id">City</label>
+                    <input type="text" id="city" readonly>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="id">Dicstrict</label>
+                    <input type="text" id="district" readonly>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="id">Ward</label>
+                    <input type="text" id="ward" readonly>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="id">Property's Type</label>
+                    <input type="text" id="type" readonly>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="id">Furniture Type</label>
+                    <input type="text" id="furniture" readonly>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="id">Number of Bedroom</label>
+                    <input type="text" id="bedroom" readonly>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="id">Reporter</label>
+                    <input type="text" id="reporter" readonly>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a class="ui-btn ui-corner-all" data-rel="back">Cancel</a>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="submit" value="Confirm">
+                    </div>
+                </div>
+            </form>
+            <!-- Rental Existed Form -->
+            <form data-role="popup" id="frm-error" class="ui-content">
+                <div class="ui-field-contain">
+                    <label for="id" style="color:red">Rental Existed</label>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-b">
+                        <a data-rel="back">Ok</a>
+                    </div>
+                    </div>
+            </form>
+
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#page-home" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon">Home</a>
+                    </li>
+                    <li>
+                        <a href="#page-create-rental" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon ui-state-persist active">
+                            Create Rental
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page-rental" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon">Rental List</a>
+                    </li>
+                    <li>
+                        <a href="#page-list-account" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon">Account</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- PAGE "RENTAL LIST" -->
+    <div data-role="page" id="page-rental">
+        <div data-role="header" data-position="fixed">Available Rental</div>
+        <div data-role="main" class="ui-content">
+            <ul id="list-rental" data-role="listview" class="ui-nodisc-icon ui-alt-icon"></ul>
+
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#page-home" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon">Home</a>
+                    </li>
+                    <li>
+                        <a href="#page-create-rental" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon">Create Rental</a>
+                    </li>
+                    <li>
+                        <a href="#page-rental" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ui-state-persist active">Rental List</a>
+                    </li>
+                    <li>
+                        <a href="#page-list-account" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon">Account</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE "RENTAL DETAILS" -->
+    <div data-role="page" id="page-detail-rental">
+        <div data-role="header" data-position="fixed">
+            <div style="margin-left: 5px;">
+                <a style="border: none; background-color: transparent; float:left;" href="#page-rental" data-transition="none"
+                   class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-nodisc-icon">Back to list</a>
+            </div>
+            Property's Details
+        </div>
+        <div data-role="main" class="ui-content">
+            <!-- DISPLAY DETAILS -->
+            <img src="img/house.jpg" width="100%"><br><br>
+            <label for="id">Rental</label>
+            <input type="text" id="rentalname" readonly><br>
+            <label for="id">Monthly Price</label>
+            <input type="text" id="price" readonly><br>
+            <label for="id">Address</label>
+            <input type="text" id="address" readonly><br>
+            <label for="id">City</label>
+            <input type="text" id="city" readonly><br>
+            <label for="id">District</label>
+            <input type="text" id="district" readonly><br>
+            <label for="id">Ward</label>
+            <input type="text" id="ward" readonly><br>
+            <label for="id">Property's Type</label>
+            <input type="text" id="type" readonly><br>
+            <label for="id">Furniture Type</label>
+            <input type="text" id="furniture" readonly><br>
+            <label for="id">Number of Bedroom</label>
+            <input type="text" id="bedroom" readonly><br>
+            <label for="id">Reporter</label>
+            <input type="text" id="reporter" readonly><br>
+            <label for="id">Post's Date</label>
+            <input type="text" id="date" readonly><br>
+
+            <!-- BUTTONS "UPDATE" & "DELETE" -->
+            <div class="ui-grid-a">
+                <div class="ui-block-a" style="padding-right: 5px;">
+                    <button class="ui-btn ui-corner-all" id="btn-update-rental">Update</button>
+                </div>
+                <div class="ui-block-b" style="padding-left: 5px;">
+                    <a href="#frm-delete-rental" data-rel="popup" data-position-to="window" data-transition="pop"
+                       class="ui-btn ui-corner-all ui-btn-b">Delete</a>
+                </div>
+            </div>
+            <form data-role="popup" id="frm-delete-rental">
+                <div data-role="header">
+                    <h1 style="padding-top: 20px; font-size: small">Delete Rental?</h1>
+                </div>
+                <div role="main" class="ui-content">
+                    <h3>Are you sure you want to delete this account?</h3>
+                    <p>This action cannot be undone.</p>
+                    <br>
+                    <p><em>Please type "<strong>confirm delete</strong>" to delete this account.</em></p>
+                    <input type="text" id="txt-delete-rental">
+                    <div style="text-align: right;">
+                        <a class="ui-btn ui-corner-all ui-btn-inline" data-rel="back">Cancel</a>
+                        <button type="submit" class="ui-btn ui-corner-all ui-btn-inline ui-disabled"
+                                id="btn-delete-rental">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- COMMENT AREA -->
+            <form id="frm-comment-rental" style="margin-top: 25px;">
+                <textarea id="txt-comment-rental" placeholder="Please enter your Note here..."></textarea>
+                <div style="text-align: right;">
+                    <button type="submit" class="ui-btn ui-btn-inline ui-corner-all ui-btn-b">Add Note</button>
+                </div>
+                <div id="list-comment-rental"></div>
+            </form>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#page-home" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon">Home</a>
+                    </li>
+                    <li>
+                        <a href="#page-create-rental" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon">Create Rental</a>
+                    </li>
+                    <li>
+                        <a href="#page-rental" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ui-state-persist active">Rental List</a>
+                    </li>
+                    <li>
+                        <a href="#page-list-account" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon">Account</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+           
+
+
+
+
+
+
+
+            <!-- PAGE "ACCOUNT LIST" -->
+            <div data-role="page" id="page-list-account">
+                <div data-role="header" data-position="fixed">Users</div>
+                <div data-role="main">
+                    <!--Display Account List-->
+                    <ul id="list-account" data-role="listview" class="ui-nodisc-icon ui-alt-icon"></ul>
+                </div>
+                <div data-role="footer" data-position="fixed">
+                    <div data-role="navbar">
+                        <ul>
+                            <li>
+                                <a href="#page-home" data-transition="none"
+                                   class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon">Home</a>
+                            </li>
+                            <li>
+                                <a href="#page-create-rental" data-transition="none"
+                                   class="ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon">Create Account</a>
+                            </li>
+                            <li>
+                                <a href="#page-rental" data-transition="none"
+                                   class="ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ">
+                                    Rental
+                                    List
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#page-list-account" data-transition="none"
+                                   class="ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon ui-state-persist active">Account</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE "ACCOUNT DETAILS" -->
+            <div data-role="page" id="page-detail-account">
+                <div data-role="header" data-position="fixed">
+                    <div style="margin-left: 5px;">
+                        <a style="border: none; background-color: transparent; float:left;" href="#page-list-account" data-transition="none"
+                           class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-nodisc-icon">Back to list</a>
+                    </div>
+					Account Details
+                </div>
+                <div data-role="main" class="ui-content">
+                    <!-- DISPLAY DETAILS -->
+                    <img src="img/reporter.png" width="100%"><br><br>
+                    <label for="id">ID</label>
+                    <input type="text" id="id" readonly><br>
+                    <label for="id">Username</label>
+                    <input type="text" id="username" readonly><br>
+                    <label for="id">Password</label>
+                    <input type="text" id="password" readonly><br>
+                    <!-- BUTTONS "UPDATE" & "DELETE" -->
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="padding-right: 5px;">
+                            <button class="ui-btn ui-corner-all" id="btn-update">Update</button>
+                        </div>
+                        <div class="ui-block-b" style="padding-left: 5px;">
+                            <a href="#frm-delete" data-rel="popup" data-position-to="window" data-transition="pop"
+                               class="ui-btn ui-corner-all ui-btn-b">Delete</a>
+                        </div>
+                    </div>
+                    <form data-role="popup" id="frm-delete">
+                        <div data-role="header">
+                            <h1 style="padding-top: 20px;">Delete Account?</h1>
+                        </div>
+                        <div role="main" class="ui-content">
+                            <h3>Are you sure you want to delete this account?</h3>
+                            <p>This action cannot be undone.</p>
+                            <br>
+                            <p><em>Please type "<strong>confirm delete</strong>" to delete this account.</em></p>
+                            <input type="text" id="txt-delete">
+                            <div style="text-align: right;">
+                                <a class="ui-btn ui-corner-all ui-btn-inline" data-rel="back">Cancel</a>
+                                <button type="submit" class="ui-btn ui-corner-all ui-btn-inline ui-disabled"
+                                        id="btn-delete">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- COMMENT AREA -->
+                    <form id="frm-comment" style="margin-top: 25px;">
+                        <textarea id="txt-comment" placeholder="Please enter your comment here..."></textarea>
+                        <div style="text-align: right;">
+                            <button type="submit" class="ui-btn ui-btn-inline ui-corner-all ui-btn-b">Comment</button>
+                        </div>
+                        <div id="list-comment"></div>
+                    </form>
+                </div>
+                <div data-role="footer" data-position="fixed">
+                    <div data-role="navbar">
+                        <ul>
+                            <li>
+                                <a href="#page-home" data-transition="none"
+                                   class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon">Home</a>
+                            </li>
+                            <li>
+                                <a href="#page-create-rental" data-transition="none"
+                                   class="ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon">Create Account</a>
+                            </li>
+                            <li>
+                                <a href="#page-rental" data-transition="none"
+                                   class="ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ">Rental List</a>
+                            </li>
+                            <li>
+                                <a href="#page-list-account" data-transition="none"
+                                   class="ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon ui-state-persist active">Account</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <script src="cordova.js"></script>
+            <script src="js/jquery.js"></script>
+            <script src="js/jquery.mobile-1.4.5.min.js"></script>
+            <script src="js/address.js"></script>
+            <script src="js/index.js"></script>
+</body>
+
+</html>
